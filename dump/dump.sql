@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `todos` (
   `todo_id` int NOT NULL AUTO_INCREMENT,
   `activity_group_id` int NOT NULL,
   `title` varchar(256) NOT NULL,
-  `priority` varchar(10) NOT NULL DEFAULT "low",
+  `priority` varchar(10),
   `is_active` BOOLEAN,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,

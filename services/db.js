@@ -32,8 +32,8 @@ async function migrate(){
       todo_id INT PRIMARY KEY AUTO_INCREMENT,
       activity_group_id INT NOT NULL,
       title VARCHAR(255) NOT NULL,
-      priority VARCHAR(10) NOT NULL DEFAULT 'low',
-      is_active BOOLEAN NOT NULL DEFAULT true,
+      priority VARCHAR(10) DEFAULT 'very-high',
+      is_active BOOLEAN DEFAULT true,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       FOREIGN KEY (activity_group_id) REFERENCES activities(activity_id)

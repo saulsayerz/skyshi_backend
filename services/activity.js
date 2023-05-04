@@ -11,7 +11,7 @@ async function getActivities(){
       return {data};
       }
       else {
-      return [data];
+      return {data: []};
       }
 }
 

@@ -12,10 +12,12 @@ function emptyOrRows(rows, type = 'activity') {
       return transformedRows;
     } else {
       const transformedRows = rows.map(row => {
+        const bool_is_active = row.is_active ? true : false;
         const transformedActivity = {
           id: row.todo_id,
           ...row,
-          todo_id: undefined // Remove the old key
+          todo_id: undefined, // Remove the old key
+          is_active : bool_is_active
         };
         return transformedActivity;
       });
