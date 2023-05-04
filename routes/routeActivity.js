@@ -22,7 +22,6 @@ router.get('/:id', async function(req, res, next) {
       res.status(404).json({status: "Not Found", message: "Activity with ID " + req.params.id + " Not Found"});
       return;
     }
-    console.log(oneActivity)
 
     res.status(200).json({ status: success, message: success, ...oneActivity });
   } catch (err) {
@@ -78,7 +77,7 @@ router.patch('/:id', async function(req, res, next) {
 router.delete('/:id', async function(req, res, next) {
   try {
     const oneActivity = await activities.getOneActivities(req.params.id);
-    if (oneActivity.data.length === 0) {
+    if (!oneActivity) {
       res.status(404).json({status: "Not Found", message: "Activity with ID " + req.params.id + " Not Found"});
       return;
     }

@@ -88,7 +88,7 @@ router.patch('/:id', async function(req, res, next) {
 router.delete('/:id', async function(req, res, next) {
   try {
     const oneTodo = await todos.getOneTodos(req.params.id);
-    if (oneTodo.data.length === 0) {
+    if (!oneTodo) {
       res.status(400).json({status: "Not Found", message: "Todo with ID " + req.params.id + " Not Found"});
       return;
     }

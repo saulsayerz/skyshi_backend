@@ -14,8 +14,8 @@ async function getOneTodos(id){
   const result = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [id]
   );
-  const temp = helper.emptyOrRows(result)[0];
-  if (temp.length > 0){
+  const temp = helper.emptyOrRows(result);
+  if (temp){
     const data = temp[0];
     return {data};
   }
@@ -44,9 +44,11 @@ async function patchTodo(title,priority, is_active, id){
     `SELECT * FROM todos where todo_id = ?`, [id]
     );
 
-    const data = helper.emptyOrRows(datatemp, 'todos');
-
-    return {data};
+    const temp = helper.emptyOrRows(datatemp);
+    if (temp){
+      const data = temp[0];
+      return {data};
+    }
 }
 
 async function deleteTodo(id){
