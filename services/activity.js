@@ -7,7 +7,12 @@ async function getActivities(){
     );
     const data = helper.emptyOrRows(result);
   
-    return {data};
+    if (data){
+      return {data};
+      }
+      else {
+      return [data];
+      }
 }
 
 async function getOneActivities(id){

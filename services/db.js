@@ -9,6 +9,14 @@ async function query(sql, params) {
 }
 
 async function migrate(){
+  // await query(`
+  //   DROP TABLE IF EXISTS todos
+  // `);
+
+  // await query(`
+  //   DROP TABLE IF EXISTS activities
+  // `);
+
   await query(`
     CREATE TABLE IF NOT EXISTS activities (
       activity_id INT PRIMARY KEY AUTO_INCREMENT,

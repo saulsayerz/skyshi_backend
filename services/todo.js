@@ -6,8 +6,12 @@ async function getTodos(activity_group_id){
       `SELECT * FROM todos where activity_group_id = ?`, [activity_group_id]
     );
     const data = helper.emptyOrRows(result, 'todos');
-  
+    if (data){
     return {data};
+    }
+    else {
+    return [data];
+    }
 }
 
 async function getOneTodos(id){
@@ -23,8 +27,8 @@ async function getOneTodos(id){
 
 async function createTodo(title, activity_group_id, is_active){
   const result = await db.query(
-  `INSERT INTO todos (title, activity_group_id, is_active) VALUES ('${title}', ${activity_group_id}, ${is_active})`
-  );
+    `INSERT INTO todos (title, activity_group_id, is_active) VALUES (?, ?, ?)`, [title, activity_group_id, is_active]
+    );
   
   const datatemp = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [result.insertId]

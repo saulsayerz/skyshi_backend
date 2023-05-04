@@ -35,9 +35,11 @@ router.post('/', async function(req, res, next) {
   try {
     if (!email) {
       res.status(400).json({ status: "Bad Request", message: 'email cannot be null'});
+      return
     }
     if (!title) {
       res.status(400).json({ status: "Bad Request", message: 'title cannot be null'});
+      return
     }
     const result = await activities.createActivity(title,email);
 
@@ -58,19 +60,19 @@ router.patch('/:id', async function(req, res, next) {
     }
     if (!title) {
       res.status(400).json({ status: "Bad Request", message: 'title cannot be null'});
+      return
     }
 
     if (!req.params.id) {
       res.status(404).json({ message: 'Error while creating activity: title is required'});
       return
     }
-
     const result = await activities.patchActivity(title,req.params.id);
     res.status(200).json({status: success, message: success, ...result });
 
   } catch (err) {
-    console.error(`Error in creating activity: `, err.message);
-    res.status(400).json({message: 'Error in creating activity: ' + err.message});
+    console.error(`Error in editing activity: `, err.message);
+    res.status(400).json({message: 'Error in editing activity: ' + err.message});
   }
 });
 
@@ -86,8 +88,8 @@ router.delete('/:id', async function(req, res, next) {
     res.status(200).json({status: success, message: success, data: {}});
 
   } catch (err) {
-    console.error(`Error in creating activity: `, err.message);
-    res.status(400).json({message: 'Error in creating activity: ' + err.message});
+    console.error(`Error in deleting activity: `, err.message);
+    res.status(400).json({message: 'Error in deleting activity: ' + err.message});
   }
 });
   

@@ -1,8 +1,8 @@
 {
-    "name": "bonekify-rest-service",
+    "name": "Skyshi BE",
     "version": "1.0.0",
-    "description": "Bonekify REST Service",
-    "author": "Ahmad Alfani Handoyo",
+    "description": "Skyshi BE ",
+    "author": "Saul Sayers",
     "main": "app.js",
     "scripts": {
         "start": "node app.js",

@@ -39,12 +39,11 @@ router.post('/', async function(req, res, next) {
   try {
     if (!title) {
       res.status(400).json({ status: "Bad Request", message: 'title cannot be null'});
+      return
     }
     if (!activity_group_id) {
       res.status(400).json({ status: "Bad Request", message: 'activity_group_id cannot be null'});
-    }
-    if (!is_active) {
-      res.status(400).json({ status: "Bad Request", message: 'is_active cannot be null'});
+      return
     }
     const result = await todos.createTodo(title, activity_group_id, is_active);
 
@@ -80,8 +79,8 @@ router.patch('/:id', async function(req, res, next) {
     res.status(201).json({status: success, message: success, ...result });
 
   } catch (err) {
-    console.error(`Error in creating todo: `, err.message);
-    res.status(400).json({message: 'Error in creating todo: ' + err.message});
+    console.error(`Error in editing todo: `, err.message);
+    res.status(400).json({message: 'Error in editing todo: ' + err.message});
   }
 });
 
@@ -97,8 +96,8 @@ router.delete('/:id', async function(req, res, next) {
     res.status(201).json({status: success, message: success, data: {}});
 
   } catch (err) {
-    console.error(`Error in creating todo: `, err.message);
-    res.status(400).json({message: 'Error in creating todo: ' + err.message});
+    console.error(`Error in deleting todo: `, err.message);
+    res.status(400).json({message: 'Error in deleting todo: ' + err.message});
   }
 });
   
