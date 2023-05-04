@@ -1,11 +1,11 @@
 const db = require('./db');
 const helper = require('../helper');
 
-async function getTodos(){
+async function getTodos(activity_group_id){
     const result = await db.query(
-      `SELECT * FROM todos`
+      `SELECT * FROM todos where activity_group_id = ?`, [activity_group_id]
     );
-    const data = helper.emptyOrRows(result);
+    const data = helper.emptyOrRows(result, 'todos');
   
     return {data};
 }
@@ -14,35 +14,35 @@ async function getOneTodos(id){
   const result = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [id]
   );
-  const data = helper.emptyOrRows(result);
+  const data = helper.emptyOrRows(result, 'todos');
 
   return {data};
 }
 
-async function createTodo(title, email){
+async function createTodo(title, activity_group_id, is_active){
   const result = await db.query(
-  `INSERT INTO todos (title, email) VALUES ('${title}', '${email}')`
+  `INSERT INTO todos (title, activity_group_id, is_active) VALUES ('${title}', ${activity_group_id}, ${is_active})`
   );
   
   const datatemp = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [result.insertId]
     );
 
-  const data = helper.emptyOrRows(datatemp);
+  const data = helper.emptyOrRows(datatemp, 'todos');
 
   return {data};
 }
 
-async function patchTodo(title,id){
+async function patchTodo(title,priority, is_active, id){
   const result = await db.query(
-  `UPDATE todos SET title = '${title}' WHERE todo_id = '${id}'`
+  `UPDATE todos SET title = '${title}', priority = '${priority}', is_active = ${is_active} WHERE todo_id = '${id}'`
   );
   
   const datatemp = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [id]
     );
 
-    const data = helper.emptyOrRows(datatemp);
+    const data = helper.emptyOrRows(datatemp, 'todos');
 
     return {data};
 }

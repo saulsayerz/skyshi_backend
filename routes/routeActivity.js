@@ -38,8 +38,8 @@ router.post('/', async function(req, res, next) {
 
     res.status(200).json({status: success, message: success, ...result });
   } catch (err) {
-    console.error(`Error in creating user: `, err.message);
-    res.status(400).json({message: 'Error in creating user: ' + err.message});
+    console.error(`Error in creating activity: `, err.message);
+    res.status(400).json({message: 'Error in creating activity: ' + err.message});
   }
 });
 
@@ -56,8 +56,8 @@ router.patch('/:id', async function(req, res, next) {
     res.status(200).json({status: success, message: success, ...result });
 
   } catch (err) {
-    console.error(`Error in creating user: `, err.message);
-    res.status(400).json({message: 'Error in creating user: ' + err.message});
+    console.error(`Error in creating activity: `, err.message);
+    res.status(400).json({message: 'Error in creating activity: ' + err.message});
   }
 });
 
@@ -73,8 +73,8 @@ router.delete('/:id', async function(req, res, next) {
     res.status(200).json({status: success, message: success, data: {}});
 
   } catch (err) {
-    console.error(`Error in creating user: `, err.message);
-    res.status(400).json({message: 'Error in creating user: ' + err.message});
+    console.error(`Error in creating activity: `, err.message);
+    res.status(400).json({message: 'Error in creating activity: ' + err.message});
   }
 });
   
