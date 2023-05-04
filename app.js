@@ -1,6 +1,7 @@
 const express = require('express');
 const routeActivity = require("./routes/routeActivity");
 const routeTodo = require("./routes/routeTodo");
+const db = require('./services/db');
 
 const app = express();
 var cors = require('cors')
@@ -24,3 +25,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+db.migrate();
