@@ -28,7 +28,7 @@ async function migrate(){
       is_active BOOLEAN NOT NULL DEFAULT true,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      FOREIGN KEY (activity_group_id) REFERENCES activity_groups(activity_id)
+      FOREIGN KEY (activity_group_id) REFERENCES activities(activity_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     )
