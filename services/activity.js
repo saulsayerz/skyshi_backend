@@ -14,9 +14,12 @@ async function getOneActivities(id){
   const result = await db.query(
     `SELECT * FROM activities where activity_id = ?`, [id]
   );
-  const data = helper.emptyOrRows(result);
-
-  return {data};
+  const temp = helper.emptyOrRows(result)[0];
+  if (temp.length > 0){
+    const data = temp[0];
+    return {data};
+  }
+  
 }
 
 async function createActivity(title, email){
@@ -28,7 +31,7 @@ async function createActivity(title, email){
     `SELECT * FROM activities where activity_id = ?`, [result.insertId]
     );
 
-  const data = helper.emptyOrRows(datatemp);
+  const data = helper.emptyOrRows(datatemp)[0];
 
   return {data};
 }

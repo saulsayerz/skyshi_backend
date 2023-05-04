@@ -14,9 +14,11 @@ async function getOneTodos(id){
   const result = await db.query(
     `SELECT * FROM todos where todo_id = ?`, [id]
   );
-  const data = helper.emptyOrRows(result, 'todos');
-
-  return {data};
+  const temp = helper.emptyOrRows(result)[0];
+  if (temp.length > 0){
+    const data = temp[0];
+    return {data};
+  }
 }
 
 async function createTodo(title, activity_group_id, is_active){
@@ -28,7 +30,7 @@ async function createTodo(title, activity_group_id, is_active){
     `SELECT * FROM todos where todo_id = ?`, [result.insertId]
     );
 
-  const data = helper.emptyOrRows(datatemp, 'todos');
+  const data = helper.emptyOrRows(datatemp, 'todos')[0];
 
   return {data};
 }
